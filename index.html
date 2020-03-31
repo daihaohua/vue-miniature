@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        我是----{{msg}}---{{comments.date}}
+        <!-- <p v-text="msg"></p>
+	 <p v-text="msg"></p>
+	 <p v-text="msg"></p>
+	 <p v-text="msg"></p>
+        <p v-html="strHtml"></p>
+       <input type="text" v-model="msg"/> -->
+     <!--  <ul>
+            <li>{{msg}}</li>
+            <li>{{msg}}</li>
+        </ul> -->
+        <!-- <div v-class="active"></div> -->
+        <button v-on:click="handelClick">点击</button>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script src="./myVue.js"></script>
+    <script src="./compiler.js"></script>
+    <script src="./Observe.js"></script>
+    <script src="./Watcher.js"></script>
+    <script>
+            let vm =  new MyVue({
+                el:"#app",
+                data:{
+                    msg:"我是根组件数据",
+                    age:"我是年龄数据",
+                    comments:{
+                        boot:"喜欢",
+                        date:123
+                    },
+                    strHtml:"<h1>我是根目录的h1标签<h1>",
+                    active:"active"
+                },
+                methods: {
+                    handelClick(){
+                        // console.log("我是跟组件函数")
+			   this.msg = "我是methods修改后的数据"
+			   this.comments.date = "456"
+			   // this.msg = {name:"123"}
+			   // this.strHtml = "<h3>我是修改后的h3标签</h3>"
+			   // this.active = "active"
+                    }
+                },
+
+            })
+            //获取data中的数据和修改data中的数据多可以使用vm这个对象代理;
+            // vm.msg = "我是vm修改的数据"
+            // console.log(vm.age);
+	     
+	     
+	     
+	     
+		// 初始化做的事件
+		// 	1.数据代理
+		// 	2.劫持data中的所有数据
+		// 		2.1使用Object.defineProperty给每个属性添加set和get函数
+		// 		2.2为每个属性添加订阅器,专门用来存放订阅者;
+		// 	3.编译模板
+		// 		3.1基于vue的data数据初始化界面
+		// 		3.2添加不同的watcher并且和dep(订阅者对象)创建关联;
+		// 用户操作阶段
+		// 	修改vue中data数据,触发set函数,让订阅器对象通知订阅者更新视图;
+		
+		// 订阅者是   Watcher
+		// 发布者是   Observe 
+            </script>
+</body>
+</html>
